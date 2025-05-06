@@ -37,6 +37,10 @@
 
 		gtag('config', 'UA-3416596-20');
 	</script>
+	<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+	<script src="js/firebase.js"></script> <!-- firebase configure -->
+	<script src="js/leaderboard.js"></script> <!-- rank leaderboard on the big screen -->
 
 </head>
 <body ontouchstart="">
@@ -91,7 +95,7 @@
 		</div>
 
 		<!-- GAME MENU PAGE -->
-		<div id="pageGameMenu" class="page-cont page-game-menu page-faded-bg">
+		<!-- <div id="pageGameMenu" class="page-cont page-game-menu page-faded-bg">
 			<div class="fixed-75w-wrapper">
 				<div class="gm-menu-header-cont">
 					<div class="tpbl-circle c-blue gm-menu-logo-bg"></div>
@@ -99,8 +103,31 @@
 					<h2 class="gm-menu-subtitle">Every Tap Matters</h2>
 				</div>
 				<button id="newGameBtn" class="gm-btn btn-blue" type="button" name="button">New Game</button>
-				<!-- <button id="highScoresBtn" class="gm-btn" type="button" name="button">Best Score</button> -->
+				
 				<button id="aboutBtn" class="gm-btn" type="button" name="button">About</button>
+			</div>
+		</div> -->
+
+		<!-- TEST: GAME MENU PAGE-->
+
+		<div id="pageGameMenu" class="page-cont page-game-menu page-faded-bg">
+			<div class="fixed-75w-wrapper">
+			  <div class="gm-menu-header-cont">
+				<div class="tpbl-circle c-blue gm-menu-logo-bg"></div>
+				<h1 class="gm-menu-title">Tap Tap Tap</h1>
+				<h2 class="gm-menu-subtitle">Every Tap Matters</h2>
+			  </div>
+		  
+			  <!-- Thêm input để nhập tên -->
+			  <div class="gm-player-name-input" style="margin-top: 20px; text-align: center;">
+				<div id="nameStatus" style="font-size: 14px; height: 18px;"></div>
+				<input type="text" id="playerNameInput" placeholder="Your name..." class="gm-btn" style="text-align: center;">
+			  </div>
+		  
+			  <!-- Nút bấm -->
+			  <button id="newGameBtn" class="gm-btn btn-blue" type="button" name="button" disabled>New Game</button>
+			  <!-- <button id="highScoresBtn" class="gm-btn" type="button" name="button">Best Score</button> -->
+			  <button id="aboutBtn" class="gm-btn" type="button" name="button">About</button>
 			</div>
 		</div>
 
@@ -268,5 +295,7 @@
 
 	<!-- logic & brain -->
 	<script src="js/habibiScript.js"></script>
+	<script src="js/playerNameHandler.js"></script>
+
 </body>
 </html>

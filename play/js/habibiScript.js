@@ -473,6 +473,9 @@ var gameEngine = {
   gameLost: function() {
     audioPool.playSound(levelLost);
     lvlLostScore.innerHTML = gameEngine.score;
+    //Lưu điểm lên firebase
+    saveScore(playerName, gameEngine.score);
+    //
     toolsBox.hidePage(pagePlayArea);
     toolsBox.showPage(pageYouLost);
     gameEngine.stop();
@@ -771,3 +774,44 @@ aboutBtn.addEventListener('click', function() {
 
 // Hide Splash Screen when everything is loaded
 toolsBox.hideSplashScreen();
+
+
+// //Check if the playername is valid and ready to play
+// const nameInput = document.getElementById("playerNameInput");
+// const statusSpan = document.getElementById("nameStatus");
+// const newGameBtn = document.getElementById("newGameBtn");
+
+// let isNameValid = false;
+
+// function isNameTaken(name) {
+//   const scores = JSON.parse(localStorage.getItem("highScores") || "[]");
+//   return scores.some(score => score.name.toLowerCase() === name.toLowerCase());
+// }
+
+// nameInput.addEventListener("input", function () {
+//   const name = nameInput.value.trim();
+
+//   if (isNameTaken(name)) {
+//     statusSpan.textContent = "Existed playername";
+//     statusSpan.style.color = "red";
+//     newGameBtn.disabled = true;
+//     isNameValid = false;
+//   } else {
+//     statusSpan.textContent = "Valid!";
+//     statusSpan.style.color = "green";
+//     newGameBtn.disabled = false;
+//     isNameValid = true;
+//   }
+// });
+
+// newGameBtn.addEventListener("click", function () {
+//   if (!isNameValid) return;
+
+//   const name = nameInput.value.trim();
+//   window.playerName = name;
+//   localStorage.setItem("playerName", name);
+
+//   toolsBox.hidePage(pageGameMenu);
+//   toolsBox.showPage(pagePlayArea); // hoặc gọi gameEngine.start() tùy cách bạn xử lý
+//   gameEngine.start();
+// });
