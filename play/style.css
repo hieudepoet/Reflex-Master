@@ -664,7 +664,7 @@ hr {
   }
   100% {
     transform: scale(1.6);
-    opacity; 0;
+    opacity: 0;
   }
 }
 
@@ -785,4 +785,27 @@ hr {
   body {
     font-size: 1.6rem;
   }
+}
+
+.level-up-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 9999;
+  animation: fadeInOut 1.5s ease-in-out forwards;
+}
+
+@keyframes fadeInOut {
+  0%   { opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { opacity: 0; }
 }

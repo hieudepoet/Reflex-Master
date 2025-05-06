@@ -496,34 +496,68 @@ var gameEngine = {
     }
     gameEngine.gameLost();
   },
+  // levelPassed: function() {
+  //   console.log('Level passed! 💃');
+  //   audioPool.playSound(levelPassed);
+  //   timeEngine.stop(); // stop the count down
+
+  //   // update level passed page info
+  //   lvlPssdTtl.innerHTML = "Level " + gameEngine.levelNum;
+  //   if (gameEngine.bonusScore > 0) { // if there is a bonus, display score without bonus
+  //     lvlPssdScore.innerHTML = gameEngine.score - gameEngine.bonusScore;
+  //   } else {
+  //     lvlPssdScore.innerHTML = gameEngine.score;
+  //   }
+
+  //   gameEngine.updateLevel(gameEngine.levelNum + 1); // Update level number in the game engine
+
+  //   // Add new level
+  //   levelsEngine.addNewLevel( // add new level to the levels engine
+  //     gameEngine.levelNum,
+  //     gameEngine.levelTime, //Hieu set new leveltime shift
+  //     gameEngine.tapValue + 2,
+  //     gameEngine.tapsGoal + 1,
+  //     1, // good circles count
+  //     gameEngine.evilCirclesCount + 2
+  //   );
+
+  //   toolsBox.hidePage(pagePlayArea);
+  //   toolsBox.showPage(pageLevelPassed);
+  // },
+
+  //Hieu test levelPassed animation : 
   levelPassed: function() {
-    console.log('Level passed! 💃');
+    // 1. Dừng đồng hồ và phát âm thanh
+    timeEngine.stop();
     audioPool.playSound(levelPassed);
-    timeEngine.stop(); // stop the count down
-
-    // update level passed page info
-    lvlPssdTtl.innerHTML = "Level " + gameEngine.levelNum;
-    if (gameEngine.bonusScore > 0) { // if there is a bonus, display score without bonus
-      lvlPssdScore.innerHTML = gameEngine.score - gameEngine.bonusScore;
-    } else {
-      lvlPssdScore.innerHTML = gameEngine.score;
-    }
-
-    gameEngine.updateLevel(gameEngine.levelNum + 1); // Update level number in the game engine
-
-    // Add new level
-    levelsEngine.addNewLevel( // add new level to the levels engine
+  
+    // 2. Tăng level và thêm cấu hình level mới
+    gameEngine.updateLevel(gameEngine.levelNum + 1);
+    levelsEngine.addNewLevel(
       gameEngine.levelNum,
       gameEngine.levelTime + 1,
       gameEngine.tapValue + 2,
       gameEngine.tapsGoal + 1,
-      1, // good circles count
+      1,
       gameEngine.evilCirclesCount + 1
     );
-
-    toolsBox.hidePage(pagePlayArea);
-    toolsBox.showPage(pageLevelPassed);
+  
+    // 3. Bắt đầu level mới NGAY LẬP TỨC (không chờ overlay biến mất)
+    gameEngine.startLevel();
+  
+    // 4. Tạo overlay "Level Up!" (chỉ là hiệu ứng, không chặn chơi)
+    var overlay = document.createElement('div');
+    overlay.className = 'level-up-overlay';
+    overlay.innerText = 'Level Up! ' + gameEngine.levelNum;
+    document.body.appendChild(overlay);
+  
+    // 5. Tự động xóa overlay sau 1.5 giây
+    setTimeout(function() {
+      overlay.remove();
+    }, 1500);
   },
+  
+
   showBonusScore: function() {
     console.log('You got '
     + Math.round(timeEngine.timeLeft) * 10
