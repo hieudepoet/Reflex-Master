@@ -8,9 +8,20 @@ const playerName = window.playerName || localStorage.getItem("playerName") || my
 
 // Khi kết thúc game, gọi hàm này để ghi kết quả
 function sendScore(score) {
-  database.ref(`matchRoom/${myId}`).set({
-    name: playerName,
-    score: score,
-    finished: true
-  });
+    database.ref(`matchRoom/${myId}`).set({
+        //name: playerName,
+        score: score,
+        finished: true
+    });
+}
+
+// Reset trạng thái matchroom
+function resetMatchroom() {
+    database.ref(`matchRoom/player1`).update({
+        //name: playerName,
+        finished: false
+    });
+    database.ref('matchRoom/player2').update({
+        finished: false
+    });
 }

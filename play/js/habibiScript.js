@@ -762,6 +762,7 @@ newGameBtn.addEventListener('click', function() {
   audioPool.playSound(buttonTap);
   toolsBox.showPage(pageTutorial);
   toolsBox.hidePage(pageGameMenu);
+  resetMatchroom();
 }, false);
 // -- About Button
 aboutBtn.addEventListener('click', function() {
