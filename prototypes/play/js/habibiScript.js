@@ -475,8 +475,6 @@ var gameEngine = {
     lvlLostScore.innerHTML = gameEngine.score;
     //Lưu điểm lên firebase
     saveScore(playerName, gameEngine.score);
-    sendScore(gameEngine.score);
-
     //
     toolsBox.hidePage(pagePlayArea);
     toolsBox.showPage(pageYouLost);
