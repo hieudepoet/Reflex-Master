@@ -124,8 +124,12 @@ async function createNewMatch() {
 //     return currentMatchId;
 // }
 
-function sendScore(score) {
-    const matchId = currentMatchId || localStorage.getItem("currentMatchId");
+async function sendScore(score) {
+    const latestMatchRef = database.ref("matchRoom/latestMatchId");
+    const latestSnapshot = await latestMatchRef.get();
+
+    let latestId = latestSnapshot.exists() ? latestSnapshot.val() : 0;
+    let matchId = `match_${latestId}`;
     if (!matchId) {
         alert("❌ Không tìm thấy matchId!");
         return;
