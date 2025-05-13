@@ -35,7 +35,6 @@ const firebaseConfig = {
   measurementId: "G-RMDGEVV2CS"
 };
 
-// ❗ KHÔNG dùng import, dùng firebase từ CDN
 firebase.initializeApp(firebaseConfig);
-window.database = firebase.database(); // ✅ Biến global
+window.database = firebase.database(); 
 

@@ -44,3 +44,8 @@ newGameBtn.addEventListener("click", function () {
   toolsBox.showPage(pagePlayArea); // hoặc gameEngine.start();
   gameEngine.start();
 });
+
+function getPlayerParam() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get('side'); 
+}

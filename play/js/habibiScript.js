@@ -68,7 +68,8 @@ var lvlPssdScore = document.querySelector('#lvlPssdScore');
 var lvlPssdBonusScore = document.querySelector('#lvlPssdBonusScore');
 var lvlPssdContinueNextLvlBtn = document.querySelector('#lvlPssdContinueNextLvlBtn');
 
-
+// Show result page
+var pageShowResult = document.querySelector('#pageShowResult')
 // You lost page
 var pageYouLost = document.querySelector('#pageYouLost');
 // --
@@ -77,7 +78,7 @@ var lvlLostBestScore = document.querySelector('#lvlLostBestScore');
 var lvlLostTtl = document.querySelector('#lvlLostTtl');
 var lvlLostTryAgainBtn = document.querySelector('#lvlLostTryAgainBtn');
 var lvlLostIcon = document.querySelector('#lvlLostIcon');
-
+var lvlShowResultBtn = document.querySelector('#lvlShowResultBtn');
 
 // High Score Page
 var pageHighScore = document.querySelector('#pageHighScore');
@@ -712,11 +713,66 @@ toolsBox.onClickNTouchstart(lvlPssdContinueNextLvlBtn, function() {
   toolsBox.delay(gameEngine.startLevel, 1500); // Delay starting the level until the countdown is finished
 });
 
+/// Show Result Buttons
+lvlShowResultBtn.addEventListener('click', async function () {
+  const player = getPlayerParam(); // '1' hoặc '2'
+  const otherPlayer = player === 'player1' ? 'player2' : 'player1';
+
+  try {
+    // Lấy match room hiện tại
+    const latestIdSnapshot = await firebase.database().ref("matchRoom/latestMatchId").get();
+    const latestId = latestIdSnapshot.val();
+    const matchId = `match_${latestId}`; 
+
+    const dbRef = firebase.database().ref(`matchRoom/${matchId}`);
+    const matchSnapshot = await dbRef.get();
+    const matchData = matchSnapshot.val();
+
+    const thisFinished = matchData?.[player]?.finished;
+    const otherFinished = matchData?.[otherPlayer]?.finished;
+
+    if (!thisFinished || !otherFinished) {
+      console.log(matchId);
+      console.log(thisFinished);
+      console.log(otherFinished);
+      alert("Waiting for other player to finish...");
+      return;
+    }
+
+    // Nếu cả hai đã finished, so sánh điểm:
+    const score1 = matchData.player1.score || 0;
+    const score2 = matchData.player2.score || 0;
+
+    let resultMsg = '';
+    if (score1 === score2) {
+      resultMsg = "It's a draw!";
+    } else if (
+      (player === 'player1' && score1 > score2) ||
+      (player === 'player2' && score2 > score1)
+    ) {
+      resultMsg = "You Win!";
+    } else {
+      resultMsg = "You Lose!";
+    }
+
+    // Hiển thị kết quả:
+    document.getElementById('showResultText').innerText = resultMsg;
+    //document.getElementById('pageResultYourScore').innerText = `Your score: ${player === '1' ? score1 : score2}`;
+    //document.getElementById('pageResultOpponentScore').innerText = `Opponent's score: ${player === '1' ? score2 : score1}`;
+
+    toolsBox.hidePage(pageYouLost);
+    toolsBox.showPage(pageShowResult);
+
+  } catch (err) {
+    console.error("Error showing result:", err);
+  }
+});
+
 // Lost Page Buttons
 // -- Try again button
 lvlLostTryAgainBtn.addEventListener('click', function() {
   audioPool.playSound(buttonTap);
-  toolsBox.hidePage(pageYouLost);
+  toolsBox.hidePage(pageShowResult);
   toolsBox.showPage(pageGameMenu);
   gameEngine.stop();
 }, false);
@@ -758,11 +814,17 @@ abtPageBackBtn.addEventListener('click', function() {
 
 // Game Menu Buttons
 // -- New Game Button
-newGameBtn.addEventListener('click', function() {
+newGameBtn.addEventListener('click', async function() {
   audioPool.playSound(buttonTap);
   toolsBox.showPage(pageTutorial);
   toolsBox.hidePage(pageGameMenu);
-  resetMatchroom();
+  try {
+    const matchId = await findOrCreateMatch();
+    localStorage.setItem("currentMatchId", matchId);
+    console.log("✔ Match ready:", matchId);
+  } catch (err) {
+    console.error("❌ Error preparing match:", err);
+  }
 }, false);
 // -- About Button
 aboutBtn.addEventListener('click', function() {
