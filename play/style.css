@@ -809,3 +809,15 @@ hr {
   80%  { opacity: 1; }
   100% { opacity: 0; }
 }
+
+.showResultText {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 18px;
+  color: white;
+  background-color: black;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  display: inline-block;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+}

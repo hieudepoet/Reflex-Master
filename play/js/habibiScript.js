@@ -733,7 +733,7 @@ lvlShowResultBtn.addEventListener('click', async function () {
 
     if (!thisFinished || !otherFinished) {
       console.log(matchId);
-      console.log(thisFinished);
+      console.log(player);
       console.log(otherFinished);
       alert("Waiting for other player to finish...");
       return;
@@ -743,6 +743,7 @@ lvlShowResultBtn.addEventListener('click', async function () {
     const score1 = matchData.player1.score || 0;
     const score2 = matchData.player2.score || 0;
 
+    audioPool.playSound(levelPassed);
     let resultMsg = '';
     if (score1 === score2) {
       resultMsg = "It's a draw!";
