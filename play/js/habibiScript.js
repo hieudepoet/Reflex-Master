@@ -541,7 +541,7 @@ var gameEngine = {
     gameEngine.updateLevel(gameEngine.levelNum + 1);
     levelsEngine.addNewLevel(
       gameEngine.levelNum,
-      gameEngine.levelTime + 1,
+      gameEngine.levelTime,
       gameEngine.tapValue + 2,
       gameEngine.tapsGoal + 1,
       1,
