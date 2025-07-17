@@ -150,16 +150,17 @@ hr {
 }
 
 /* ------ ALL PAGES ------ */
-.page-splash { z-index: 10; display: block; }
-.page-game-menu { z-index: 9; display: none; }
-.page-about { z-index: 8; display: none; }
-.page-high-score { z-index: 7; display: none; }
-.page-tutorial { z-index: 6; display: none; }
-.page-play-delay { z-index: 5; display: none; }
-.page-play-area { z-index: 4; display: none; }
-.page-pause-menu { z-index: 3; display: none; }
-.page-you-lost { z-index: 2; display: none; }
-.page-level-passed { z-index: 1; display: none; }
+.page-splash { z-index: 11; display: block; }
+.page-game-menu { z-index: 10; display: none; }
+.page-about { z-index: 9; display: none; }
+.page-high-score { z-index: 8; display: none; }
+.page-tutorial { z-index: 7; display: none; }
+.page-play-delay { z-index: 6; display: none; }
+.page-play-area { z-index: 5; display: none; }
+.page-pause-menu { z-index: 4; display: none; }
+.page-you-lost { z-index: 3; display: none; }
+.page-level-passed { z-index: 2; display: none; }
+.page-leaderboard { z-index: 1; display: none; }
 /*  -------- Game play area page -------- */
 
 .credits-cont {
@@ -808,4 +809,61 @@ hr {
   20%  { opacity: 1; }
   80%  { opacity: 1; }
   100% { opacity: 0; }
+}
+
+
+.page-leaderboard {
+  background: linear-gradient(135deg, #0b1d31, #1e3a5f);
+  color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#leaderboardList {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#leaderboardList li {
+  display: grid;
+  grid-template-columns: 50px 1fr 100px;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  transition: background 0.3s;
+}
+
+#leaderboardList li:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+#leaderboardList li.rank-1 { background: gold; color: #000; font-weight: bold; }
+#leaderboardList li.rank-2 { background: silver; color: #000; }
+#leaderboardList li.rank-3 { background: #cd7f32; color: #000; }
+
+.gm-btn {
+  background: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.gm-btn:hover {
+  background: #0056b3;
+}
+
+.page-cont {
+  display: none;
+}
+.page-cont.active {
+  display: block;
 }

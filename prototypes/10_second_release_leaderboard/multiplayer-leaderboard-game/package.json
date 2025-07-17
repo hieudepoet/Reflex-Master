@@ -1,0 +1,26 @@
+{
+  "name": "multiplayer-leaderboard-game",
+  "version": "1.0.0",
+  "description": "A multiplayer tapping game with a leaderboard feature.",
+  "main": "src/js/habibiScript.js",
+  "scripts": {
+    "start": "live-server public",
+    "build": "webpack --mode production"
+  },
+  "keywords": [
+    "multiplayer",
+    "leaderboard",
+    "game",
+    "firebase"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "firebase": "^9.23.0",
+    "live-server": "^1.2.1"
+  },
+  "devDependencies": {
+    "webpack": "^5.64.4",
+    "webpack-cli": "^4.9.1"
+  }
+}

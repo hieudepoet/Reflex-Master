@@ -132,7 +132,7 @@
 		  
 			  <!-- Nút bấm -->
 			  <button id="newGameBtn" class="gm-btn btn-blue" type="button" name="button" disabled>New Game</button>
-			  <!-- <button id="highScoresBtn" class="gm-btn" type="button" name="button">Best Score</button> -->
+			  <button id="btnLeaderboard" class="gm-btn" type="button" name="button">Leaderboard</button>
 			  <button id="aboutBtn" class="gm-btn" type="button" name="button">About</button>
 			</div>
 		</div>
@@ -297,6 +297,14 @@
 			</div>
 		</div>
 
+	</div>
+
+	<div id="pageLeaderboard" class="page-cont page-leaderboard page-faded-bg">
+		<div class="fixed-75w-wrapper">
+			<h2 style="text-align:center;">Bảng Xếp Hạng</h2>
+			<ul id="leaderboardList" style="font-size:1.5em; list-style:none; padding:0;"></ul>
+			<button id="leaderboardBackBtn" class="gm-btn">Quay Lại</button>
+		</div>
 	</div>
 
 	<!-- logic & brain -->

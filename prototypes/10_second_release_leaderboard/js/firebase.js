@@ -22,7 +22,7 @@
 // const analytics = getAnalytics(app);
 
 // firebase.initializeApp(firebaseConfig);
-// window.database = db; 
+// window.database = db;
 
 const firebaseConfig = {
   apiKey: "AIzaSyCEeVQzdFzIKw6_yBWr18iOh-O-4z8St94",
@@ -32,10 +32,9 @@ const firebaseConfig = {
   storageBucket: "taptaptap-a465b.appspot.com",
   messagingSenderId: "922386504980",
   appId: "1:922386504980:web:0b3824142f7eada0557601",
-  measurementId: "G-RMDGEVV2CS"
+  measurementId: "G-RMDGEVV2CS",
 };
 
 // ❗ KHÔNG dùng import, dùng firebase từ CDN
 firebase.initializeApp(firebaseConfig);
 window.database = firebase.database(); // ✅ Biến global
-

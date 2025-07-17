@@ -7,7 +7,9 @@ let isNameValid = false;
 
 function isNameTaken(name) {
   const scores = JSON.parse(localStorage.getItem("highScores") || "[]");
-  return scores.some(score => score.name.toLowerCase() === name.toLowerCase());
+  return scores.some(
+    (score) => score.name.toLowerCase() === name.toLowerCase()
+  );
 }
 
 nameInput.addEventListener("input", function () {
