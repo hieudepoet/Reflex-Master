@@ -9,7 +9,7 @@ Watch the [video demo](https://drive.google.com/file/d/1W7gNYQNBSGarx0lCi5lqL3bD
 
 ### Playing on GitHub Pages
 1. **Access the Game**:
-   - Visit the game on [GitHub Pages](https://hieudepoet.github.io/taptaptap/).
+   - Visit the game on [GitHub Pages](https://hieudepoet.github.io/Reflex-Master/).
    - The default role is **Player 1**.
 
 2. **Two-Player Mode**:
