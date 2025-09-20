@@ -7,6 +7,9 @@ Watch the [video demo](https://drive.google.com/file/d/1W7gNYQNBSGarx0lCi5lqL3bD
 
 ## Getting Started
 
+### Try it on my site
+- Visit the game on [GitHub Pages](https://hieudepoet.github.io/Reflex-Master/) to experience the gameplay by yourself. Important note, when you first access the website and start playing, the value of the parameter "player" displayed in the url is 1 (look at the ), after finishing a playing turn, change it from 1 to 2 to continue, and after finishing that next turn, you must change the value of the param back to 1, please maintain this action alternately and absolutely comply to avoid errors.
+
 ### Playing on GitHub Pages
 1. **Access the Game**:
    - Visit the game on [GitHub Pages](https://hieudepoet.github.io/Reflex-Master/).
